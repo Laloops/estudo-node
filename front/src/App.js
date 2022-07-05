@@ -17,12 +17,11 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-4">Selecione seu estado:
+          <div className="col-md-7">Selecione seu estado:
+            <Select options={actions} />
           </div>
         </div>
         <div className="col-md-4">
-        <Select options={ actions } />
-
           <div className="col-md-4"></div>
         </div>
       </div>

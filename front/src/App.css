@@ -1,5 +1,10 @@
+.render {
+  background-color: #282c34;
+
+}
+
 .container {
-  text-align: center;
+  text-align: center;  
 }
 
 .App-logo {
