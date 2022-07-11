@@ -1,6 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from 'react-bootstrap/Button';
 import { Component } from 'react';
 import React from 'react';
 import Select from 'react-select';
