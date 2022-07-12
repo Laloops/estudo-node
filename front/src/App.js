@@ -2,16 +2,31 @@ import './App.css';
 import { Component } from 'react';
 import React from 'react';
 import Select from 'react-select';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const actions = [
-  { label: "Add", value: 1 },
-  { label: "Edit", value: 2 },
-  { label: "Delete", value: 3 }
+  { label: "Add", value: 1 }
 ];
+
+function buscaDados(){
+  axios.get('http://localhost:3000/cidades')
+  .then((response)=>{
+    actions = response.data.map( (value) => {
+      return {
+        label: value
+
+      }
+    })
+  }).catch((er)=>{
+
+  })
+}
+
 
 class App extends Component {
   render() {
+    buscaDados()
     return (
       <div className="container">
         <div className="row">
