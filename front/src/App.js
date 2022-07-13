@@ -5,33 +5,34 @@ import Select from 'react-select';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const actions = [
-  { label: "Add", value: 1 }
-];
-
-function buscaDados(){
-  axios.get('http://localhost:3000/cidades')
-  .then((response)=>{
-    actions = response.data.map( (value) => {
-      return {
-        label: value
-
-      }
-    })
-  }).catch((er)=>{
-
-  })
-}
 
 
 class App extends Component {
+
+  state = {
+    cidades: [],
+  }
+
+  async componentDidMount() {
+    const response = await axios.get('http://localhost:3001/cidades');
+
+    this.setState({
+      cidades: response.data.map((obj) => {
+        return {
+          label: obj.estado,
+          value: obj.estado
+
+        }
+      })
+    });
+  }
   render() {
-    buscaDados()
+    const { cidades } = this.state;
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-7">Selecione seu estado:
-            <Select options={actions} />
+            <Select options={cidades} />
           </div>
         </div>
         <div className="col-md-4">

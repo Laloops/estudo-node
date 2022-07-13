@@ -2,7 +2,7 @@ import express from "express";
 import axios from "axios";
 //import routes from "./routes.js";
 //import db from "./src/db.js";
-
+import cors from "cors";
 //low  db config  
 import { join, dirname } from 'path'
 import { Low, JSONFile } from 'lowdb'
@@ -15,11 +15,13 @@ const adapter = new JSONFile(file)
 const db = new Low(adapter)
 
 
+
+
 // low db config
 const app = express();
 
 app.use(express.json());
-
+app.use(cors())
 
 //db.sync(() => console.log(`Banco de dados conectado: ${process.env.DB_NAME}`));
 
@@ -34,7 +36,17 @@ app.get('/', (req, res) => {
 app.get('/cidades', async (req, res) => {
     await db.read()
     db.data ||= { cidades: [] }
-    res.send(db.data.cidades)
+const result = db.data.cidades.filter(checkState);
+
+function checkState(atual,index) {
+   if (index == 0) { return true}
+    if (atual.estado != db.data.cidades[index -1].estado){
+     return true;
+   }else{
+    return false;
+   }
+}
+    res.send(result)
 });
 
 app.get('/buscaestadoassincrona', (req, res) => {
@@ -105,7 +117,7 @@ app.get('/buscaestado', async (req, res) => {
     }
 });
 */
-app.listen(3000, () => console.log("Servidor iniciado na porta 3000"));
+app.listen(3001, () => console.log("Servidor iniciado na porta 3000"));
 
 
 //iniciar servidor
