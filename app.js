@@ -33,7 +33,17 @@ app.get('/', (req, res) => {
     res.status(200).send(place)
 });
 
-app.get('/cidades', async (req, res) => {
+app.get('/cidades/:nome', async (req, res) => {
+    const nomeCidade = req.params.nome
+    await db.read()
+    db.data ||= { cidades: [] }
+    const result = db.data.cidades.filter((atual) => {
+        return nomeCidade == atual.estado
+    });
+    res.send(result)
+})
+
+app.get('/estados', async (req, res) => {
     await db.read()
     db.data ||= { cidades: [] }
 const result = db.data.cidades.filter(checkState);
