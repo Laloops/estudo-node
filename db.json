@@ -2345,6 +2345,11 @@
       "cidade": "Várzea Alegre"
     },
     {
+      "estado": "Distrito Federal",
+      "cidade": "Brasília"
+    },
+  
+    {
       "estado": "Espírito Santo",
       "cidade": "Afonso Cláudio"
     },
@@ -2655,10 +2660,6 @@
     {
       "estado": "Espírito Santo",
       "cidade": "Águia Branca"
-    },
-    {
-      "estado": "Federal District",
-      "cidade": "Brasília"
     },
     {
       "estado": "Goiás",
